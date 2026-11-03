@@ -13,12 +13,10 @@ import { useTheme } from "next-themes";
 
 export default function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
-
-  const [mount, setMount] = useState(false);
-  useEffect(() => {
-    setMount(true);
-  });
-  if (!mount) return null;
+  function changeTheme(value: string) {
+    setTheme(value);
+    document.cookie = `theme=${value};max-age=2592000;path=/`;
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -34,19 +32,19 @@ export default function ThemeSwitcher() {
         <DropdownMenuGroup>
           <DropdownMenuLabel>Theme</DropdownMenuLabel>
         </DropdownMenuGroup>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
+        <DropdownMenuItem onClick={() => changeTheme("dark")}>
           <div className="w-full flex justify-between">
             Dark
             <Moon size={18} />
           </div>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("light")}>
+        <DropdownMenuItem onClick={() => changeTheme("light")}>
           <div className="w-full flex justify-between">
             Light
             <Sun size={18} />
           </div>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
+        <DropdownMenuItem onClick={() => changeTheme("system")}>
           <div className="w-full flex justify-between">
             System
             <SunMoon size={18} />
