@@ -1,0 +1,8 @@
+{
+  "navbar": {
+    "logo": "Task Manager",
+    "btn_light": "Light",
+    "btn_dark": "Dark",
+    "btn_login": "Login"
+  }
+}

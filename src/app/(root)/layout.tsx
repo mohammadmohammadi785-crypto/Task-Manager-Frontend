@@ -1,3 +1,4 @@
+import Navbar from "@/components/nav-bar";
 import React from "react";
 
 export default function RootLayout({
@@ -7,7 +8,10 @@ export default function RootLayout({
 }) {
   return (
     <body>
-      <div>{children}</div>
+      <div>
+        <Navbar />
+        {children}
+      </div>
     </body>
   );
 }
