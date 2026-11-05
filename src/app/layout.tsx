@@ -1,22 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "next-themes";
-import { NextIntlClientProvider } from "next-intl";
-import { cookies } from "next/headers";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { NextIntlClientProvider, useLocale } from "next-intl";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,28 +10,17 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {
-  const cookiesInfo = await cookies();
-  const lang = cookiesInfo.get("locale")?.value || "en";
+  const locale = useLocale();
+  const lang = locale || "en";
   return (
     <html
       lang={lang == "en" ? "en" : "fa"}
       dir={lang == "en" ? "ltr" : "rlt"}
-      suppressContentEditableWarning
-      className={cn(
-        "h-full",
-        "antialiased",
-        geistSans.variable,
-        geistMono.variable,
-        "font-sans",
-        inter.variable,
-      )}
+      suppressHydrationWarning
+      className={cn("h-full", "antialiased", "font-sans")}
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider
-          attribute="class"
-          enableSystem
-          defaultTheme={cookiesInfo.get("theme")?.value || "light"}
-        >
+        <ThemeProvider attribute="class" enableSystem defaultTheme={"light"}>
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
         </ThemeProvider>
       </body>
