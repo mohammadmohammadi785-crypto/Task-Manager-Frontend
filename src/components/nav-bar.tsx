@@ -1,8 +1,9 @@
 import { Button } from "./ui/button";
 import ThemeSwitcher from "./ThemeSwitcher";
-import { useTranslations } from "next-intl";
-export default function Navbar() {
-  const t = useTranslations("navbar");
+import { getTranslations } from "next-intl/server";
+
+export default async function Navbar() {
+  const t = await getTranslations("navbar");
   return (
     <div className="w-full px-8 py-4 flex justify-between items-center">
       <div>
