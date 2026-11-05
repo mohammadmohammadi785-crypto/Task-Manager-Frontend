@@ -5,7 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { LucideLanguages } from "lucide-react";
+import { Languages } from "lucide-react";
 
 export default function LanguageSwitcher() {
   function changeLang(lang: string) {
@@ -14,7 +14,7 @@ export default function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <LucideLanguages />
+        <Languages />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem onClick={() => changeLang("fa")}>
