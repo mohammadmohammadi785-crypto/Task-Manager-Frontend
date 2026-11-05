@@ -8,9 +8,11 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Moon, Sun, SunMoon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
 export default function ThemeSwitcher() {
+  const t = useTranslations("navbar");
   const { theme, setTheme } = useTheme();
   function changeTheme(value: string) {
     setTheme(value);
@@ -33,19 +35,19 @@ export default function ThemeSwitcher() {
         </DropdownMenuGroup>
         <DropdownMenuItem onClick={() => changeTheme("dark")}>
           <div className="w-full flex justify-between">
-            Dark
+            {t("btn_dark")}
             <Moon size={18} />
           </div>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => changeTheme("light")}>
           <div className="w-full flex justify-between">
-            Light
+            {t("btn_light")}
             <Sun size={18} />
           </div>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => changeTheme("system")}>
           <div className="w-full flex justify-between">
-            System
+            {t("btn_system")}
             <SunMoon size={18} />
           </div>
         </DropdownMenuItem>

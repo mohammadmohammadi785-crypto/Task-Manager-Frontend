@@ -1,5 +1,6 @@
 import { Button } from "./ui/button";
 import ThemeSwitcher from "./ThemeSwitcher";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { getTranslations } from "next-intl/server";
 
 export default async function Navbar() {
@@ -10,6 +11,7 @@ export default async function Navbar() {
         <h1>{t("logo")}</h1>
       </div>
       <div className="flex gap-6">
+        <LanguageSwitcher />
         <ThemeSwitcher />
         <Button>{t("btn_login")}</Button>
       </div>

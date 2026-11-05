@@ -1,16 +1,23 @@
 "use client";
+import { useLocale } from "next-intl";
+import { Languages } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Languages } from "lucide-react";
 
 export default function LanguageSwitcher() {
+  const locale = useLocale();
+
   function changeLang(lang: string) {
-    document.cookie = `locale=${lang};max-age=2596000;path=/`;
+    if (lang === locale) return;
+
+    document.cookie = `locale=${lang}; max-age=2592000; path=/; samesite=lax`;
+    window.location.reload();
   }
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
